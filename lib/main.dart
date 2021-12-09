@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
     api.send(params, data);
     await Future.delayed(Duration(seconds: 6));
     if (uint == null) return;
+    if (uint!.length  <= 2) return;
     api.send(
       ProtocolParameters(
           macAddress: '70:B3:D5:7B:12:1D',
