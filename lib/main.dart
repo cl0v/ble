@@ -21,6 +21,10 @@ class _MyAppState extends State<MyApp> {
   BuzzaoBle? response;
   Uint8List? uint;
 
+  open() async{
+    
+  }
+
   close() async {
     CloseCashierSend _closingSession = CloseCashierSend(
       operatorId: '02df37bc-ef3e-4c4d-9027-a1efc4cfc102',
