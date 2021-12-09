@@ -21,11 +21,10 @@ class _MyAppState extends State<MyApp> {
   BuzzaoBle? response;
   Uint8List? uint;
 
-  open() async{
-    
-  }
+  open() async {}
 
   close() async {
+    await api.connect('70:B3:D5:7B:12:1D');
     CloseCashierSend _closingSession = CloseCashierSend(
       operatorId: '02df37bc-ef3e-4c4d-9027-a1efc4cfc102',
     );
