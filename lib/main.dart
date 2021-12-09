@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
     );
     api.send(params, data);
     await Future.delayed(Duration(seconds: 6));
+    if (uint == null) return;
     api.send(
       ProtocolParameters(
           macAddress: '70:B3:D5:7B:12:1D',
@@ -47,42 +48,52 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text('Dados recebidos: '),
-            StreamBuilder<Uint8List>(
-              stream: api.onDataReceive,
-              initialData: Uint8List.fromList([]),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return const Text('Sem dados');
-                }
-                if (snapshot.data != null) {
-                  uint = snapshot.data;
-                  response = BuzzaoBleProtocol.result(snapshot.data);
-                  return Text(
-                    response.toString(),
-                  );
-                }
-                return const Text('Aguardando...');
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Abrir'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                api.disconnect();
-              },
-              child: Text('Desconectar'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Fechar'),
-            ),
-          ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  const Text('Dados recebidos: '),
+                  StreamBuilder<Uint8List>(
+                    stream: api.onDataReceive,
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const Text('Sem dados');
+                      }
+                      if (snapshot.data != null) {
+                        uint = snapshot.data;
+                        response = BuzzaoBleProtocol.result(snapshot.data);
+                        return Text(
+                          response.toString(),
+                        );
+                      }
+                      return const Text('Aguardando...');
+                    },
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      api.disconnect();
+                    },
+                    child: Text('Desconectar'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Abrir'),
+                  ),
+                  ElevatedButton(
+                    onPressed: close,
+                    child: Text('Fechar'),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
