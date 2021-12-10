@@ -34,12 +34,8 @@ class _MyAppState extends State<MyApp> {
       timeout: 3000,
       command: BuzzaoBleCommands.closeSession,
     );
-    api.send(params, data);
-    await Future.delayed(Duration(seconds: 6));
-    print('uint: $uint');
-    if (uint == null) return;
-    if (uint!.length <= 2) return;
-    api.send(
+    final result = await api.send(params, data);
+    await api.send(
       ProtocolParameters(
           macAddress: '70:B3:D5:7B:12:1D',
           timeout: 3000,
@@ -47,6 +43,9 @@ class _MyAppState extends State<MyApp> {
           ack: true),
       null,
     );
+    print('Resultado: $result');
+    final r = BuzzaoBleProtocol.result(result);
+    print('Tipo: $r');
   }
 
   @override

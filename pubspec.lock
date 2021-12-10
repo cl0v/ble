@@ -20,7 +20,7 @@ packages:
     description:
       path: "."
       ref: r2-null-safety
-      resolved-ref: "6f79614c4d6af471ef282cdf97c0184085993459"
+      resolved-ref: ae99458182eecdb22709e14026251164c8e68256
       url: "git@gitlab.materialize.pro:buzzao/dart-ble-protocol.git"
     source: git
     version: "4.1.4"
