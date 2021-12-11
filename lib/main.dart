@@ -24,16 +24,18 @@ class _MyAppState extends State<MyApp> {
   open() async {}
 
   close() async {
-    await api.connect('70:B3:D5:7B:12:1D');
-    CloseCashierSend _closingSession = CloseCashierSend(
+
+    final closingSession = CloseCashierSend(
       operatorId: '02df37bc-ef3e-4c4d-9027-a1efc4cfc102',
     );
-    final data = Uint8List.fromList(jsonEncode(_closingSession).codeUnits);
+    final data = Uint8List.fromList(jsonEncode(closingSession).codeUnits);
     final params = ProtocolParameters(
       macAddress: '70:B3:D5:7B:12:1D',
       timeout: 3000,
       command: BuzzaoBleCommands.closeSession,
     );
+
+    await api.connect('70:B3:D5:7B:12:1D');
     final result = await api.send(params, data);
     await api.send(
       ProtocolParameters(
