@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     );
     final data = Uint8List.fromList(jsonEncode(closingSession).codeUnits);
     final params = ProtocolParameters(
-      macAddress: '70:B3:D5:7B:12:1D',
+      // macAddress: '70:B3:D5:7B:12:1D',
       timeout: 3000,
       command: BuzzaoBleCommands.closeSession,
     );
@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     final result = await api.send(params, data);
     await api.send(
       ProtocolParameters(
-          macAddress: '70:B3:D5:7B:12:1D',
+          // macAddress: '70:B3:D5:7B:12:1D',
           timeout: 3000,
           command: uint![1],
           ack: true),
