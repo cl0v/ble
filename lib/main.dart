@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
   open() async {}
 
   close() async {
-
     final closingSession = CloseCashierSend(
       operatorId: '02df37bc-ef3e-4c4d-9027-a1efc4cfc102',
     );
@@ -37,14 +36,7 @@ class _MyAppState extends State<MyApp> {
 
     await api.connect('70:B3:D5:7B:12:1D');
     final result = await api.send(params, data);
-    await api.send(
-      ProtocolParameters(
-          // macAddress: '70:B3:D5:7B:12:1D',
-          timeout: 3000,
-          command: uint![1],
-          ack: true),
-      null,
-    );
+    await api.sendAck(uint![1]);
     print('Resultado: $result');
     final r = BuzzaoBleProtocol.result(result);
     print('Tipo: $r');
