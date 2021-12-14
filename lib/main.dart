@@ -111,10 +111,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 final opendata = Uint8List.fromList([
-  1,
-  5,
-  0,
-  206,
+  
   123,
   34,
   116,
@@ -321,6 +318,4 @@ final opendata = Uint8List.fromList([
   108,
   108,
   125,
-  160,
-  207
 ]);
