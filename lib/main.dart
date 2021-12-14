@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
                     child: Text('Desconectar'),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: open,
                     child: Text('Abrir'),
                   ),
                   ElevatedButton(
